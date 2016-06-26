@@ -1,0 +1,76 @@
+<script>function openModalBox() {
+var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+   $("body").append(appendthis);
+   $(".modal-overlay").fadeTo(500, 0.7);
+   $('#deleteETAId').fadeIn($(this).data());
+       $("#deleteBody").css("display","block");
+       $("#deleteFooter").css("display","block");
+}
+function closeModalBox() {
+
+  $(".modal-overlay").remove();
+  $(".modal-box").hide();
+}</script> <style>.modal-box {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  width: 88%;
+  background: white;
+  border-bottom: 1px solid #aaa;
+  border-radius: 4px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+  left: 10%;
+  top: 20%;
+  font-family: Helvetica,Lucida Grande, Geneva, Verdana, Arial;
+  color: rgba(64, 62, 62, 0.96);
+  font-size: 12px;
+}
+
+.modal-box header,
+.modal-box .modal-header {
+padding: 1.5em;
+border-bottom: 1px solid #ddd;
+}
+
+.modal-box header h3,
+.modal-box header h4,
+.modal-box .modal-header h3,
+.modal-box .modal-header h4 { margin: 0; }
+
+.modal-box .modal-body { padding: 2em 1.5em; }
+
+.modal-box footer,
+.modal-box .modal-footer {
+padding: 1em;
+border-top: 1px solid #ddd;
+background: rgba(0, 0, 0, 0.02);
+text-align: right;
+}
+
+.modal-overlay {
+opacity: 0;
+filter: alpha(opacity=0);
+position: absolute;
+top: 0;
+left: 0;
+z-index: 900;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.3) !important;
+}
+
+span.close {
+line-height: 2;
+font-size: 1.5em;
+position: absolute;
+top: 1%;
+right: 2%;
+text-decoration: none;
+color: #000;
+cursor: pointer;
+}
+.sectionDetails {
+  height: 200px;
+}</style> <div ng-include src="'views/header.html'"></div> <div class="container"> <div class="jumbotron" class="wrapper"> <div id="custom-search-input" class="margin-bottom-sm"> <div class="input-group col-md-3 pull-right m-b-3"> <input type="text" class="search-query form-control" placeholder="Search" ng-model="filterVal"> </div> </div> <table class="table table-hover"> <thead> <tr> <th>Site Id <th>Site Name <th>Location <th>Status   <tbody role="alert" aria-live="polite" aria-relevant="all" ng-repeat="customerObj in customerList | filter: filterVal"> <tr class="gradeX odd"> <td class="sorting_1"> {{customerObj.id}} <td class="">{{customerObj.siteName}} <td class="">{{customerObj.address}} <td class=""> <div class="switch"> <input id="cmn-toggle-{{$index}}" class="cmn-toggle cmn-toggle-round" type="checkbox" ng-checked="checkSiteStatus({{customerObj.siteState}})"> <label for="cmn-toggle-{{$index}}"></label> </div>    </table> </div> <div id="deleteETAId" class="modal-box"> <header> <span class="js-modal-close close" onclick="closeModalBox()">X</span> <h3>Details</h3> </header> <div class="modal-body"> <div class="container"> <div class="tab-selection"> <nav> <span href="/html/" class="">Hour</span> <span href="/html/" class="active">Day</span> <span href="/html/" class="">Week</span> <span href="/html/" class="">Month</span> </nav> </div> <div class="sectionDetails"></div> </div> </div> <footer id="deleteFooter"> </footer> </div> </div>
